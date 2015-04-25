@@ -74,11 +74,11 @@ describe 'Marcador' do
       end
     end
 
-    it 'teniendo 0 games, deberia sumar uno, quedando en 1 el valor de games ganados' do
+    it 'teniendo 0, deberia sumar uno, quedando en 1 el valor de games ganados' do
       sumar_game_a jugador1
 
-      expect(marcador.games_de jugador1).to eq 1
-      expect(marcador.games_de jugador1).to eq 0
+      expect(marcador.games_de(jugador1)).to eq 1
+      expect(marcador.games_de(jugador2)).to eq 0
     end
   end
 end
