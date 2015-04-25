@@ -106,11 +106,11 @@ describe 'Marcador' do
 
   describe 'cuando un jugador gana un set' do
     it 'teniendo 1, suma uno y gana el partido' do
-      12.times do
+      11.times do
         sumar_game_a jugador1
       end
 
-      expect(marcador.gano? jugador1).to eq true
+      expect{ sumar_game_a jugador1 }.to raise_exception("El ganador del partido es #{jugador1}")
     end
   end
 end

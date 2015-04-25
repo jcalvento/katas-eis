@@ -31,7 +31,8 @@ class Marcador
     @puntajesDeJugadores[un_jugador].sumar_punto
   end
 
-  def gano? un_jugador
-    @puntajesDeJugadores.any? { |jugador, puntaje| jugador == un_jugador && puntaje.gano? }
+  def se_gano_el_partido_con un_puntaje
+    jugador = @puntajesDeJugadores.detect { |jugador, puntaje| puntaje == un_puntaje }.first
+    raise "El ganador del partido es #{jugador}"
   end
 end

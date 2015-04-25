@@ -38,7 +38,11 @@ class Puntaje
   end
 
   def sumar_set
-    @sets += 1
+    if @sets == 1
+      @marcador.se_gano_el_partido_con self
+    else
+      @sets += 1
+    end
   end
 
   def gano?
