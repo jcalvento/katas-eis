@@ -6,4 +6,8 @@ class Marcador
   def puntosDe(un_jugador)
     0
   end
+
+  def gamesDe(un_jugador)
+    0
+  end
 end
