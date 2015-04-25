@@ -51,7 +51,20 @@ class Puntaje
     end
   end
 
-  def gano?
-    sets.equal? 2
+  def sumar_punto_para_cuarenta
+    @marcador.sumar_punto_a_cuarenta_para self
+  end
+
+  def marcar_ventaja
+    @punto = Ventaja.new
+  end
+
+  def marcar_punto_para_game
+    @punto = @punto.sumar_punto
+    sumar_game
+  end
+
+  def tiene_cuarenta_puntos?
+    @punto.es_cuarenta?
   end
 end

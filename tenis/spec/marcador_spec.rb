@@ -71,6 +71,20 @@ describe 'Marcador' do
       expect(marcador.games_de(jugador1)).to eq 1
       expect(marcador.games_de(jugador2)).to eq 0
     end
+
+    it 'teniendo 40 puntos ambos jugadores queda en ventaja' do
+      3.times do
+        marcador.marcar_punto_para jugador1
+      end
+      4.times do
+        marcador.marcar_punto_para jugador2
+      end
+
+      expect(marcador.puntos_de(jugador1)).to eq 40
+      expect(marcador.puntos_de(jugador2)).to eq 'Ventaja'
+      expect(marcador.games_de(jugador1)).to eq 0
+      expect(marcador.games_de(jugador2)).to eq 0
+    end
   end
 
   describe 'cuando un jugador suma un game' do

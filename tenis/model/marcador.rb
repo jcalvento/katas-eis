@@ -11,11 +11,11 @@ class Marcador
   end
 
   def se_sumo_un_game_a un_puntaje
-    puntaje_igual_a(un_puntaje).reiniciar_puntos
+    puntaje_distinto_a(un_puntaje).reiniciar_puntos
   end
 
   def se_sumo_un_set_a un_puntaje
-    puntaje_igual_a(un_puntaje).reiniciar_games
+    puntaje_distinto_a(un_puntaje).reiniciar_games
   end
 
   def puntos_de(un_jugador)
@@ -39,9 +39,23 @@ class Marcador
     raise "El ganador del partido es #{jugador}"
   end
 
+  def sumar_punto_a_cuarenta_para un_puntaje
+    puntaje = puntaje_igual_a un_puntaje
+    otro_puntaje = puntaje_distinto_a un_puntaje
+
+    if puntaje.tiene_cuarenta_puntos? && otro_puntaje.tiene_cuarenta_puntos?
+      un_puntaje.marcar_ventaja
+    else
+      un_puntaje.marcar_punto_para_game
+    end
+  end
   private
 
   def puntaje_igual_a otro_puntaje
+    @puntajesDeJugadores.detect { |jugador, puntaje| puntaje == otro_puntaje }[1]
+  end
+
+  def puntaje_distinto_a otro_puntaje
     @puntajesDeJugadores.detect { |jugador, puntaje| puntaje != otro_puntaje }[1]
   end
 end
