@@ -20,6 +20,11 @@ class Puntaje
     @punto = Punto.para_comenzar
   end
 
+  def reiniciar_games
+    reiniciar_puntos
+    @game = Game.para_comenzar
+  end
+
   def puntos
     @punto.valor
   end
@@ -42,6 +47,7 @@ class Puntaje
       @marcador.se_gano_el_partido_con self
     else
       @sets += 1
+      @marcador.se_sumo_un_set_a self
     end
   end
 

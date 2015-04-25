@@ -91,6 +91,7 @@ describe 'Marcador' do
     end
 
     it 'teniendo 5, deberia sumar un set y, tanto el puntaje como los games de ambos vuelven a 0' do
+      sumar_game_a jugador2 #para testear que sus games vuelven a 0
       6.times do
         sumar_game_a jugador1
       end
