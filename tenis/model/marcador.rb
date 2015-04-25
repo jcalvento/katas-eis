@@ -11,7 +11,7 @@ class Marcador
   end
 
   def se_sumo_un_game_a un_puntaje
-    puntaje = @puntajesDeJugadores.detect { |jugador, puntaje| puntaje != un_puntaje}[1]
+    puntaje = @puntajesDeJugadores.detect { |jugador, puntaje| puntaje != un_puntaje }[1]
     puntaje.reiniciar_puntos
   end
 
@@ -29,5 +29,9 @@ class Marcador
 
   def marcar_punto_para(un_jugador)
     @puntajesDeJugadores[un_jugador].sumar_punto
+  end
+
+  def gano? un_jugador
+    @puntajesDeJugadores.any? { |jugador, puntaje| jugador == un_jugador && puntaje.gano? }
   end
 end

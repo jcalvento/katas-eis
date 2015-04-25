@@ -11,6 +11,12 @@ describe 'Marcador' do
     marcador.empezar_partido_de jugador1, jugador2
   end
 
+  def sumar_game_a un_jugador
+    4.times do
+      marcador.marcar_punto_para un_jugador
+    end
+  end
+
   describe 'cuando empieza el partido' do
     it 'ambos jugadores deberian tener 0 puntos' do
       expect(marcador.puntos_de(jugador1)).to eq 0
@@ -68,12 +74,6 @@ describe 'Marcador' do
   end
 
   describe 'cuando un jugador suma un game' do
-    def sumar_game_a un_jugador
-      4.times do
-        marcador.marcar_punto_para un_jugador
-      end
-    end
-
     it 'teniendo 0, deberia sumar uno, quedando en 1 el valor de games ganados' do
       sumar_game_a jugador1
 
@@ -101,6 +101,16 @@ describe 'Marcador' do
       expect(marcador.puntos_de(jugador2)).to eq 0
       expect(marcador.sets_de(jugador1)).to eq 1
       expect(marcador.sets_de(jugador2)).to eq 0
+    end
+  end
+
+  describe 'cuando un jugador gana un set' do
+    it 'teniendo 1, suma uno y gana el partido' do
+      12.times do
+        sumar_game_a jugador1
+      end
+
+      expect(marcador.gano? jugador1).to eq true
     end
   end
 end

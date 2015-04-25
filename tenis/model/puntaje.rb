@@ -1,8 +1,9 @@
 require_relative 'punto'
+require_relative 'game'
 
 class Puntaje
 
-  attr_reader :games, :sets
+  attr_reader :sets
 
   def self.en un_marcador
     self.new un_marcador
@@ -10,30 +11,37 @@ class Puntaje
 
   def initialize un_marcador
     @marcador = un_marcador
-    @puntos = Punto.para_comenzar
-    @games = 0
+    @punto = Punto.para_comenzar
+    @game = Game.para_comenzar
     @sets = 0
   end
 
   def reiniciar_puntos
-    @puntos = Punto.para_comenzar
+    @punto = Punto.para_comenzar
   end
 
   def puntos
-    @puntos.valor
+    @punto.valor
+  end
+
+  def games
+    @game.valor
   end
 
   def sumar_punto
-    @puntos = @puntos.sumar_punto_en self
+    @punto = @punto.sumar_punto_en self
   end
 
   def sumar_game
-    if games == 5
-      @sets += 1
-      @games = 0
-    else
-      @games += 1
-    end
+    @game = @game.sumar_game_en self
     @marcador.se_sumo_un_game_a self
+  end
+
+  def sumar_set
+    @sets += 1
+  end
+
+  def gano?
+    sets.equal? 2
   end
 end
