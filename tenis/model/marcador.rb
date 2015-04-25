@@ -1,17 +1,27 @@
-class Marcador
-  def empezarPartidoDe(un_jugador, otro_jugador)
+require_relative 'puntaje'
 
+class Marcador
+  def initialize
+    @puntajesDeJugadores = {}
+  end
+  def empezarPartidoDe(un_jugador, otro_jugador)
+    @puntajesDeJugadores[un_jugador] = Puntaje.new
+    @puntajesDeJugadores[otro_jugador] = Puntaje.new
   end
 
   def puntosDe(un_jugador)
-    0
+    @puntajesDeJugadores[un_jugador].puntos
   end
 
   def gamesDe(un_jugador)
     0
   end
 
-  def setsDe(jugador1)
+  def setsDe(un_jugador)
     0
+  end
+
+  def marcarPuntoPara(un_jugador)
+    @puntajesDeJugadores[un_jugador].sumarPunto
   end
 end
