@@ -4,24 +4,30 @@ class Marcador
   def initialize
     @puntajesDeJugadores = {}
   end
-  def empezarPartidoDe(un_jugador, otro_jugador)
-    @puntajesDeJugadores[un_jugador] = Puntaje.new
-    @puntajesDeJugadores[otro_jugador] = Puntaje.new
+
+  def empezar_partido_de(un_jugador, otro_jugador)
+    @puntajesDeJugadores[un_jugador] = Puntaje.en self
+    @puntajesDeJugadores[otro_jugador] = Puntaje.en self
   end
 
-  def puntosDe(un_jugador)
+  def se_sumo_un_game_a un_puntaje
+    puntaje = @puntajesDeJugadores.detect { |jugador, puntaje| puntaje != un_puntaje}[1]
+    puntaje.reiniciar_puntos
+  end
+
+  def puntos_de(un_jugador)
     @puntajesDeJugadores[un_jugador].puntos
   end
 
-  def gamesDe(un_jugador)
+  def games_de(un_jugador)
+    @puntajesDeJugadores[un_jugador].games
+  end
+
+  def sets_de(un_jugador)
     0
   end
 
-  def setsDe(un_jugador)
-    0
-  end
-
-  def marcarPuntoPara(un_jugador)
-    @puntajesDeJugadores[un_jugador].sumarPunto
+  def marcar_punto_para(un_jugador)
+    @puntajesDeJugadores[un_jugador].sumar_punto
   end
 end
