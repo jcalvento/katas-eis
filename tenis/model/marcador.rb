@@ -10,4 +10,8 @@ class Marcador
   def gamesDe(un_jugador)
     0
   end
+
+  def setsDe(jugador1)
+    0
+  end
 end
