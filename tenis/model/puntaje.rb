@@ -7,8 +7,10 @@ class Puntaje
   end
 
   def sumarPunto
-    if @puntos == 0
+    if puntos == 0
       @puntos = 15
+    elsif puntos == 15
+      @puntos = 30
     end
   end
 end
