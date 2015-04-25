@@ -89,5 +89,18 @@ describe 'Marcador' do
       expect(marcador.games_de(jugador1)).to eq 2
       expect(marcador.games_de(jugador2)).to eq 0
     end
+
+    it 'teniendo 5, deberia sumar un set y, tanto el puntaje como los games de ambos vuelven a 0' do
+      6.times do
+        sumar_game_a jugador1
+      end
+
+      expect(marcador.games_de(jugador1)).to eq 0
+      expect(marcador.games_de(jugador2)).to eq 0
+      expect(marcador.puntos_de(jugador1)).to eq 0
+      expect(marcador.puntos_de(jugador2)).to eq 0
+      expect(marcador.sets_de(jugador1)).to eq 1
+      expect(marcador.sets_de(jugador2)).to eq 0
+    end
   end
 end

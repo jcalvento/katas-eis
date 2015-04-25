@@ -24,7 +24,7 @@ class Marcador
   end
 
   def sets_de(un_jugador)
-    0
+    @puntajesDeJugadores[un_jugador].sets
   end
 
   def marcar_punto_para(un_jugador)
