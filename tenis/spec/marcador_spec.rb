@@ -80,5 +80,14 @@ describe 'Marcador' do
       expect(marcador.games_de(jugador1)).to eq 1
       expect(marcador.games_de(jugador2)).to eq 0
     end
+
+    it 'teniendo 1, deberia sumar uno, quedando en 2 el valor de games ganados' do
+      2.times do
+        sumar_game_a jugador1
+      end
+
+      expect(marcador.games_de(jugador1)).to eq 2
+      expect(marcador.games_de(jugador2)).to eq 0
+    end
   end
 end
