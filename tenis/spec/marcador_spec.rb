@@ -37,10 +37,20 @@ describe 'Marcador' do
     end
 
     it 'teniendo 15, su proximo puntaje es 30' do
-      marcador.marcarPuntoPara jugador1
-      marcador.marcarPuntoPara jugador1
+      2.times do
+        marcador.marcarPuntoPara jugador1
+      end
 
       expect(marcador.puntosDe(jugador1)).to eq 30
+      expect(marcador.puntosDe(jugador2)).to eq 0
+    end
+
+    it 'teniendo 30, su proximo puntaje es 40' do
+      3.times do
+        marcador.marcarPuntoPara jugador1
+      end
+
+      expect(marcador.puntosDe(jugador1)).to eq 40
       expect(marcador.puntosDe(jugador2)).to eq 0
     end
   end
