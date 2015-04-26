@@ -9,7 +9,7 @@ class Game
     GameComun.con_cantidad_ganada 0
   end
 
-  def self.game_para_cantidad_ganada una_cantidad
+  def self.para_cantidad_ganada una_cantidad
     subclasses.detect { |subclass| subclass.can_handle? una_cantidad }.con_cantidad_ganada una_cantidad
   end
 
@@ -34,7 +34,7 @@ class GameComun < Game
   end
 
   def sumar_game_en un_puntaje
-    self.class.superclass.game_para_cantidad_ganada(@valor + 1)
+    self.class.superclass.para_cantidad_ganada(@valor + 1)
   end
 end
 
@@ -55,6 +55,6 @@ class GameFinal < Game
 
   def sumar_game_en un_puntaje
     un_puntaje.sumar_set
-    self.class.superclass.game_para_cantidad_ganada 0
+    self.class.superclass.para_cantidad_ganada 0
   end
 end

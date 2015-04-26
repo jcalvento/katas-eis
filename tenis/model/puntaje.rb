@@ -1,19 +1,21 @@
 require_relative 'punto'
 require_relative 'game'
+require_relative 'tennis_set'
 
 class Puntaje
 
-  attr_reader :sets
+  attr_reader :jugador
 
-  def self.en un_marcador
-    self.new un_marcador
+  def self.para un_marcador, un_jugador
+    self.new un_marcador, un_jugador
   end
 
-  def initialize un_marcador
+  def initialize un_marcador, un_jugador
     @marcador = un_marcador
+    @jugador = un_jugador
     @punto = Punto.para_comenzar
     @game = Game.para_comenzar
-    @sets = 0
+    @set = TennisSet.para_comenzar
   end
 
   def reiniciar_puntos
@@ -33,8 +35,13 @@ class Puntaje
     @game.valor
   end
 
+  def sets
+    @set.valor
+  end
+
   def sumar_punto
     @punto = @punto.sumar_punto_en self
+    @marcador.se_sumo_punto
   end
 
   def sumar_game
@@ -43,12 +50,8 @@ class Puntaje
   end
 
   def sumar_set
-    if @sets == 1
-      @marcador.se_gano_el_partido_con self
-    else
-      @sets += 1
-      @marcador.se_sumo_un_set_a self
-    end
+    @set = @set.sumar_set_en self
+    @marcador.se_sumo_un_set_a self
   end
 
   def sumar_punto_para_cuarenta
@@ -56,6 +59,7 @@ class Puntaje
   end
 
   def marcar_ventaja
+    @marcador.se_sumo_punto
     @punto = Ventaja.new
   end
 
@@ -66,5 +70,13 @@ class Puntaje
 
   def tiene_cuarenta_puntos?
     @punto.es_cuarenta?
+  end
+
+  def pertenece_a? un_jugador
+    @jugador.equal? un_jugador
+  end
+
+  def se_termino_el_set_final
+    @marcador.se_gano_el_partido_con self
   end
 end
