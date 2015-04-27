@@ -1,4 +1,7 @@
+require_relative 'subclass_reponsibility_exception'
+
 class Punto
+  extend SubclassResponsibilityException
 
   def self.para_comenzar
     CeroPuntos.new
@@ -9,16 +12,16 @@ class Punto
   end
 
   def valor
-    raise 'Deberia implementarse en las subclases concretas'
+    self.subclass_responsibility
   end
 
   def sumar_punto_en un_puntaje
-    raise 'Deberia implementarse en las subclases concretas'
+    self.subclass_responsibility
   end
 
 
   def es_cuarenta?
-    raise 'Deberia implementarse en las subclases concretas'
+    self.subclass_responsibility
   end
 
 end

@@ -1,8 +1,7 @@
-class Game
+require_relative 'can_handle_protocol'
 
-  def self.subclasses
-    ObjectSpace.each_object(::Class).select { |klass| klass < self }
-  end
+class Game
+  extend CanHandleProtocol
 
   def self.para_comenzar
     GameComun.con_cantidad_ganada 0
@@ -12,8 +11,16 @@ class Game
     subclasses.detect { |subclass| subclass.can_handle? una_cantidad }.con_cantidad_ganada una_cantidad
   end
 
+  def self.con_cantidad_ganada una_cantidad
+    self.subclass_responsibility
+  end
+
   def sumar_game_en un_puntaje
-    raise 'Deberia implementarse en las subclases concretas'
+    self.subclass_responsibility
+  end
+
+  def valor
+    self.subclass_responsibility
   end
 
 end

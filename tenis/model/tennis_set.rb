@@ -1,11 +1,18 @@
+require_relative 'subclass_reponsibility_exception'
+
 class TennisSet
+  extend SubclassResponsibilityException
 
   def self.para_comenzar
     SetComun.new
   end
 
   def sumar_set_en un_puntaje
-    raise 'Deberia implementarse en sus subclases'
+    self.subclass_responsibility
+  end
+
+  def valor
+    self.subclass_responsibility
   end
 
 end

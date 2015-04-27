@@ -1,12 +1,15 @@
-class EstadoDeMarcador
+require_relative 'can_handle_protocol'
 
-  def self.subclasses
-    ObjectSpace.each_object(::Class).select { |klass| klass < self }
-  end
+class EstadoDeMarcador
+  extend CanHandleProtocol
 
   def self.para un_puntaje, otro_puntaje
-    subclass = subclasses.detect { |subclass| subclass.can_handle? un_puntaje, otro_puntaje }
+    subclass = self.subclasses.detect { |subclass| subclass.can_handle? un_puntaje, otro_puntaje }
     subclass.new
+  end
+
+  def sumar_punto_a un_puntaje
+    self.subclass_responsibility
   end
 
 end
