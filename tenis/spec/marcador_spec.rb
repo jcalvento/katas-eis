@@ -11,9 +11,21 @@ describe 'Marcador' do
     marcador.empezar_partido_de jugador1, jugador2
   end
 
+  def marcar_punto_para un_jugador, una_cantidad_de_veces
+    una_cantidad_de_veces.times do
+      marcador.marcar_punto_para un_jugador
+    end
+  end
+
   def sumar_game_a un_jugador
     4.times do
       marcador.marcar_punto_para un_jugador
+    end
+  end
+
+  def sumar_games_a un_jugador, una_cantidad_de_veces
+    una_cantidad_de_veces.times do
+      sumar_game_a un_jugador
     end
   end
 
@@ -43,18 +55,14 @@ describe 'Marcador' do
     end
 
     it 'teniendo 15, su proximo puntaje es 30' do
-      2.times do
-        marcador.marcar_punto_para jugador1
-      end
+      marcar_punto_para jugador1, 2
 
       expect(marcador.puntos_de(jugador1)).to eq 30
       expect(marcador.puntos_de(jugador2)).to eq 0
     end
 
     it 'teniendo 30, su proximo puntaje es 40' do
-      3.times do
-        marcador.marcar_punto_para jugador1
-      end
+      marcar_punto_para jugador1, 3
 
       expect(marcador.puntos_de(jugador1)).to eq 40
       expect(marcador.puntos_de(jugador2)).to eq 0
@@ -62,9 +70,7 @@ describe 'Marcador' do
 
     it 'teniendo 40, se le suma un game y el puntaje de ambos jugadores vuelve a 0' do
       marcador.marcar_punto_para jugador2 #para probar que vuelve a 0
-      4.times do
-        marcador.marcar_punto_para jugador1
-      end
+      marcar_punto_para jugador1, 4
 
       expect(marcador.puntos_de(jugador1)).to eq 0
       expect(marcador.puntos_de(jugador2)).to eq 0
@@ -73,12 +79,8 @@ describe 'Marcador' do
     end
 
     it 'teniendo 40 puntos ambos jugadores queda en ventaja' do
-      3.times do
-        marcador.marcar_punto_para jugador1
-      end
-      4.times do
-        marcador.marcar_punto_para jugador2
-      end
+      marcar_punto_para jugador1, 3
+      marcar_punto_para jugador2, 4
 
       expect(marcador.puntos_de(jugador1)).to eq 40
       expect(marcador.puntos_de(jugador2)).to eq 'Ventaja'
@@ -96,9 +98,7 @@ describe 'Marcador' do
     end
 
     it 'teniendo 1, deberia sumar uno, quedando en 2 el valor de games ganados' do
-      2.times do
-        sumar_game_a jugador1
-      end
+      sumar_games_a jugador1, 2
 
       expect(marcador.games_de(jugador1)).to eq 2
       expect(marcador.games_de(jugador2)).to eq 0
@@ -121,9 +121,7 @@ describe 'Marcador' do
 
   describe 'cuando un jugador gana un set' do
     it 'teniendo 1, suma uno y gana el partido' do
-      11.times do
-        sumar_game_a jugador1
-      end
+      sumar_games_a jugador1, 11
 
       expect{ sumar_game_a jugador1 }.to raise_exception("El ganador del partido es #{jugador1}")
     end
