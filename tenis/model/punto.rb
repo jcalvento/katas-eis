@@ -1,7 +1,4 @@
-require_relative 'subclass_reponsibility_exception'
-
 class Punto
-  extend SubclassResponsibilityException
 
   def self.para_comenzar
     CeroPuntos.new
