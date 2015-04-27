@@ -1,4 +1,5 @@
 class TennisSet
+
   def self.para_comenzar
     SetComun.new
   end
@@ -6,9 +7,11 @@ class TennisSet
   def sumar_set_en un_puntaje
     raise 'Deberia implementarse en sus subclases'
   end
+
 end
 
 class SetComun < TennisSet
+
   def valor
     0
   end
@@ -16,9 +19,11 @@ class SetComun < TennisSet
   def sumar_set_en un_puntaje
     SetFinal.new
   end
+
 end
 
 class SetFinal < TennisSet
+
   def valor
     1
   end
@@ -26,4 +31,5 @@ class SetFinal < TennisSet
   def sumar_set_en un_puntaje
     un_puntaje.se_termino_el_set_final
   end
+
 end

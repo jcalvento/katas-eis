@@ -54,18 +54,9 @@ class Puntaje
     @marcador.se_sumo_un_set_a self
   end
 
-  def sumar_punto_para_cuarenta
-    @marcador.sumar_punto_a_cuarenta_para self
-  end
-
   def marcar_ventaja
     @marcador.se_sumo_punto
-    @punto = Ventaja.new
-  end
-
-  def marcar_punto_para_game
-    @punto = @punto.sumar_punto
-    sumar_game
+    @punto = Punto.para_ventaja
   end
 
   def tiene_cuarenta_puntos?
@@ -79,4 +70,5 @@ class Puntaje
   def se_termino_el_set_final
     @marcador.se_gano_el_partido_con self
   end
+
 end

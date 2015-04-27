@@ -1,8 +1,7 @@
 class Game
+
   def self.subclasses
-    result = []
-    ObjectSpace.each_object(::Class) {|klass| result << klass if klass < self }
-    result
+    ObjectSpace.each_object(::Class).select { |klass| klass < self }
   end
 
   def self.para_comenzar
@@ -16,9 +15,11 @@ class Game
   def sumar_game_en un_puntaje
     raise 'Deberia implementarse en las subclases concretas'
   end
+
 end
 
 class GameComun < Game
+
   attr_reader :valor
 
   def self.can_handle? una_cantidad
@@ -36,9 +37,11 @@ class GameComun < Game
   def sumar_game_en un_puntaje
     self.class.superclass.para_cantidad_ganada(@valor + 1)
   end
+
 end
 
 class GameFinal < Game
+
   attr_reader :valor
 
   def self.can_handle? una_cantidad
@@ -57,4 +60,5 @@ class GameFinal < Game
     un_puntaje.sumar_set
     self.class.superclass.para_cantidad_ganada 0
   end
+
 end
