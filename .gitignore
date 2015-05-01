@@ -35,4 +35,4 @@ build/
 .rvmrc
 .DS_Store
 
-char_counter/.idea
+.idea
