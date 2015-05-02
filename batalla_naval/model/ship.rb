@@ -1,4 +1,12 @@
 class Ship
+  def self.small_ship
+    SmallShip.new
+  end
+
+  def self.large_ship
+    LargeShip.new
+  end
+
   def accept a_position, a_board
     raise 'should be implemented in concrete subclasses'
   end
