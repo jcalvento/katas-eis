@@ -49,7 +49,7 @@ describe Board do
     it "should get 'hit' when I shoot a non empty position" do
       position = Coordinate.new(3, 3)
 
-      board.add_ship_in position, SmallShip.new
+      board.add_ship_in position, LargeShip.new
 
       expect(board.shoot position).to eq 'hit'
     end
@@ -58,6 +58,25 @@ describe Board do
       position = Coordinate.new(3, 3)
 
       expect(board.shoot position).to eq 'water'
+    end
+
+    it "should get 'sink' and empty the position when I shoot twice a large ship" do
+      position = Coordinate.new(3, 3)
+
+      board.add_ship_in position, LargeShip.new
+
+      expect(board.shoot position).to eq 'hit'
+      expect(board.shoot position).to eq 'sink'
+      expect(board.is_empty? position).to be_truthy
+    end
+
+    it "should get 'sink' and empty the position when I shoot once a small ship" do
+      position = Coordinate.new(3, 3)
+
+      board.add_ship_in position, SmallShip.new
+
+      expect(board.shoot position).to eq 'sink'
+      expect(board.is_empty? position).to be_truthy
     end
   end
 end

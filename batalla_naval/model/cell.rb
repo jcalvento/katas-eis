@@ -13,7 +13,15 @@ class Cell
   end
 
   def shoot
-    @state.shoot
+    @state.shoot self
+  end
+
+  def shoot_down_ship
+    @ship.got_shot_in self
+  end
+
+  def sunken_ship
+    @ship = nil
   end
 
   private
@@ -35,6 +43,10 @@ class CellState
   def self.for a_cell
     subclasses.detect { |klass| klass.can_handle? a_cell }.new
   end
+
+  def shoot a_cell
+    raise 'should be implemented in concrete subclasses'
+  end
 end
 
 class EmptyCell < CellState
@@ -42,7 +54,7 @@ class EmptyCell < CellState
     a_cell.is_empty?
   end
 
-  def shoot
+  def shoot a_cell
     'water'
   end
 end
@@ -52,7 +64,7 @@ class OccupiedCell < CellState
     !a_cell.is_empty?
   end
 
-  def shoot
-    'hit'
+  def shoot a_cell
+    a_cell.shoot_down_ship
   end
 end

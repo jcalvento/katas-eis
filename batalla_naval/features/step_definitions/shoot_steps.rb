@@ -19,5 +19,5 @@ Then(/^I get water$/) do
 end
 
 Then(/^I get sink$/) do
-  pending # Write code here that turns the phrase above into concrete actions
+  expect(@result).to eq 'sink'
 end
