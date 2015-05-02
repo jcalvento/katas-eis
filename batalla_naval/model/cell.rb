@@ -43,7 +43,7 @@ class EmptyCell < CellState
   end
 
   def shoot
-
+    'water'
   end
 end
 

@@ -9,7 +9,7 @@ Feature: Shoot
     Then I get hit
 
   Scenario: Shoot and miss
-    Given I shoot to position “3:3”
+    Given I shoot to position “1:1”
     Then I get water
 
   Scenario: Shoot and sink

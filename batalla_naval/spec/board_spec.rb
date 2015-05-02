@@ -54,10 +54,10 @@ describe Board do
       expect(board.shoot position).to eq 'hit'
     end
 
-    it "shouldn't get 'hit' when I shoot an empty position" do
+    it "should get 'water' when I shoot an empty position" do
       position = Coordinate.new(3, 3)
 
-      expect(board.shoot position).to eq nil
+      expect(board.shoot position).to eq 'water'
     end
   end
 end
