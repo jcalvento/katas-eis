@@ -7,22 +7,20 @@ Given(/^a board with dimensions "([^"]*)" x "([^"]*)"$/) do |width, height|
 end
 
 Given(/^I create a small ship in position "([^"]*)"$/) do |position|
-  split_position = position.split(':')
-  coordinate = Coordinate.new split_position.first.to_i, split_position[1].to_i
-
-  @board.add_ship_in coordinate, SmallShip.new
+  @board.add_ship_in coordinate_from(position), SmallShip.new
 end
 
 Then(/^position "([^"]*)" is not empty$/) do |position|
-  split_position = position.split(':')
-  coordinate = Coordinate.new split_position.first.to_i, split_position[1].to_i
-
-  expect(@board.is_empty? coordinate).to be_falsey
+  expect(@board.is_empty? coordinate_from(position)).to be_falsey
 end
 
 Given(/^I create a large ship in position "([^"]*)"$/) do |position|
-  split_position = position.split(':')
-  coordinate = Coordinate.new split_position.first.to_i, split_position[1].to_i
+  @board.add_ship_in coordinate_from(position), LargeShip.new
+end
 
-  @board.add_ship_in coordinate, LargeShip.new
+private
+
+def coordinate_from a_string_position
+  split_position = a_string_position.split(':')
+  Coordinate.new split_position.first.to_i, split_position[1].to_i
 end
