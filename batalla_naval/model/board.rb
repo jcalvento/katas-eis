@@ -1,4 +1,5 @@
 require 'matrix'
+require_relative 'coordinate'
 
 class Board
   attr_reader :width, :height
@@ -14,11 +15,33 @@ class Board
   end
 
   def add_ship_in a_position, a_ship
-    @cells[a_position.y, a_position.x].add a_ship
+    validate a_position
+    a_ship.accept a_position, self
   end
 
   def is_empty? a_position
-    @cells[a_position.y, a_position.x].is_empty?
+    cell_in(a_position).is_empty?
+  end
+
+  def add_small_ship_in a_position, a_ship
+    cell_in(a_position).add a_ship
+  end
+
+  def add_large_ship_in a_position, a_ship
+    cell_in(a_position).add a_ship
+    second_position = Coordinate.new(a_position.x, a_position.y + 1)
+    validate second_position
+    cell_in(second_position).add a_ship
+  end
+
+  private
+
+  def cell_in position
+    @cells[position.y, position.x]
+  end
+
+  def validate a_position
+    raise 'invalid position' unless a_position.x <= @cells.column_count - 1 && a_position.y <= @cells.row_count - 1
   end
 end
 

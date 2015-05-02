@@ -1,5 +1,5 @@
 require_relative '../../model/board'
-require_relative '../../model/small_ship'
+require_relative '../../model/ship'
 require_relative '../../model/coordinate'
 
 Given(/^a board with dimensions "([^"]*)" x "([^"]*)"$/) do |width, height|
@@ -20,6 +20,9 @@ Then(/^position "([^"]*)" is not empty$/) do |position|
   @board.is_empty? coordinate
 end
 
-Given(/^I create a large ship in position "([^"]*)"$/) do |arg1|
-  pending # Write code here that turns the phrase above into concrete actions
+Given(/^I create a large ship in position "([^"]*)"$/) do |position|
+  split_position = position.split(':')
+  coordinate = Coordinate.new split_position.first.to_i, split_position[1].to_i
+
+  @board.add_ship_in coordinate, LargeShip.new
 end
