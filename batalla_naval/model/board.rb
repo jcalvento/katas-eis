@@ -1,5 +1,6 @@
 require 'matrix'
 require_relative 'coordinate'
+require_relative 'cell'
 
 class Board
   attr_reader :width, :height
@@ -34,6 +35,10 @@ class Board
     cell_in(second_position).add a_ship
   end
 
+  def shoot(a_position)
+    cell_in(a_position).shoot
+  end
+
   private
 
   def cell_in position
@@ -42,15 +47,5 @@ class Board
 
   def validate a_position
     raise 'invalid position' unless a_position.x <= @cells.column_count - 1 && a_position.y <= @cells.row_count - 1
-  end
-end
-
-class Cell
-  def add a_ship
-    @ship = a_ship
-  end
-
-  def is_empty?
-    @ship.nil?
   end
 end

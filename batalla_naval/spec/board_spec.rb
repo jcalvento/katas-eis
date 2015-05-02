@@ -7,6 +7,10 @@ describe Board do
 
   let(:board) { Board.with_dimensions 5, 5 }
 
+  before :each do
+    board
+  end
+
   it 'should create a board with dimensions 5 x 5' do
     expect(board.width).to eq 5
     expect(board.height).to eq 5
@@ -39,5 +43,21 @@ describe Board do
     position = Coordinate.new(3, 4)
 
     expect(board.is_empty? position).to be_truthy
+  end
+
+  describe 'shoot' do
+    it "should get 'hit' when I shoot a non empty position" do
+      position = Coordinate.new(3, 3)
+
+      board.add_ship_in position, SmallShip.new
+
+      expect(board.shoot position).to eq 'hit'
+    end
+
+    it "shouldn't get 'hit' when I shoot an empty position" do
+      position = Coordinate.new(3, 3)
+
+      expect(board.shoot position).to eq nil
+    end
   end
 end

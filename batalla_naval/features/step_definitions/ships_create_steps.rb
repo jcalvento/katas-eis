@@ -17,7 +17,7 @@ Then(/^position "([^"]*)" is not empty$/) do |position|
   split_position = position.split(':')
   coordinate = Coordinate.new split_position.first.to_i, split_position[1].to_i
 
-  @board.is_empty? coordinate
+  expect(@board.is_empty? coordinate).to be_falsey
 end
 
 Given(/^I create a large ship in position "([^"]*)"$/) do |position|
