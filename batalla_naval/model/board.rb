@@ -16,7 +16,6 @@ class Board
   end
 
   def add_ship_in a_position, a_ship
-    validate a_position
     a_ship.accept a_position, self
   end
 
@@ -30,8 +29,8 @@ class Board
 
   def add_large_ship_in a_position, a_ship
     cell_in(a_position).add a_ship
+
     second_position = Coordinate.new(a_position.x, a_position.y + 1)
-    validate second_position
     cell_in(second_position).add a_ship
   end
 
@@ -42,6 +41,7 @@ class Board
   private
 
   def cell_in position
+    validate position
     @cells[position.y, position.x]
   end
 

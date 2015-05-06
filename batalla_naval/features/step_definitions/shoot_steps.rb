@@ -27,3 +27,7 @@ Given(/^a small ship in position: “(\d+):(\d+)”$/) do |x, y|
 
   @board.add_ship_in coordinate, SmallShip.new
 end
+
+When(/^I shoot to position “(\d+):(\d+)” I get an error message$/) do |x, y|
+  expect{ @board.shoot(Coordinate.new x.to_i, y.to_i) }.to raise_exception('invalid position')
+end

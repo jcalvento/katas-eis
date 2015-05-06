@@ -22,3 +22,6 @@ Feature: Shoot
     Given a small ship in position: “2:3”
     When I shoot to position “2:3”
     Then I get sink
+
+  Scenario: Shoot to an invalid position
+    When I shoot to position “6:3” I get an error message

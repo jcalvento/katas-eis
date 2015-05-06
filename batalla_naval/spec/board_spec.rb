@@ -67,5 +67,9 @@ describe Board do
       expect(board.shoot coordinate3_3).to eq 'sink'
       expect(board.is_empty? coordinate3_3).to be_truthy
     end
+
+    it 'should raise an exception when shooting to an invalid position' do
+      expect{ board.shoot Coordinate.new(6, 3) }.to raise_error('invalid position')
+    end
   end
 end
