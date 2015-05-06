@@ -18,6 +18,18 @@ Given(/^I create a large ship in position "([^"]*)"$/) do |position|
   @board.add_ship_in coordinate_from(position), LargeShip.new
 end
 
+Given(/^I create a small ship in invalid position "([^"]*)"$/) do |position|
+  begin
+    @board.add_ship_in coordinate_from(position), SmallShip.new
+  rescue Exception => e
+    @message = e.message
+  end
+end
+
+Then(/^I get an error message$/) do
+  expect(@message).to eq 'invalid position'
+end
+
 private
 
 def coordinate_from a_string_position

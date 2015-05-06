@@ -11,3 +11,7 @@ Feature: Ships create
     Given I create a large ship in position "3:3"
     Then position "3:3" is not empty
     And position "3:4" is not empty
+
+  Scenario: Create a small ship in a invalid location
+    Given I create a small ship in invalid position "7:3"
+    Then I get an error message
