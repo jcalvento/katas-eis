@@ -17,3 +17,8 @@ Feature: Shoot
     Then I get hit
     And I shoot to position “3:3”
     Then I get sink
+
+  Scenario: Shoot and sink a small ship
+    Given a small ship in position: “2:3”
+    When I shoot to position “2:3”
+    Then I get sink

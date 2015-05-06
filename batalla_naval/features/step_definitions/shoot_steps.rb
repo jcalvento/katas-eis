@@ -21,3 +21,9 @@ end
 Then(/^I get sink$/) do
   expect(@result).to eq 'sink'
 end
+
+Given(/^a small ship in position: “(\d+):(\d+)”$/) do |x, y|
+  coordinate = Coordinate.new x.to_i, y.to_i
+
+  @board.add_ship_in coordinate, SmallShip.new
+end
