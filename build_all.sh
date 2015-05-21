@@ -5,5 +5,5 @@ cd char_counter
 bundle exec rake
 cd ../tenis/
 bundle exec rake
-cd ../batalla_naval/
+cd ../battleship/
 bundle exec rake

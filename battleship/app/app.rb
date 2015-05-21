@@ -1,4 +1,5 @@
 require_relative 'models/board'
+require 'padrino'
 
 module Battleship
   class App < Padrino::Application
