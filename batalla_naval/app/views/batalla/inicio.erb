@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <form method="POST" action="create-board">
+      <%= csrf_token_field %>
+      <p>Create board with: </p>
+      <label>Width</label>
+      <input id="width" type="number" name="width">
+      <label>Height</label>
+      <input id="height" type="number" name="height">
+      <input type="submit" value="Create"/>
+    </form>
+  </body>
+</html>

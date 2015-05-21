@@ -1,33 +1,27 @@
 Given(/^a large ship in position: “(\d+):(\d+)”$/) do |x, y|
-  coordinate = Coordinate.new x.to_i, y.to_i
-
-  @board.add_ship_in coordinate, LargeShip.new
+  pending
 end
 
 Given(/^I shoot to position “(\d+):(\d+)”$/) do |x, y|
-  coordinate = Coordinate.new x.to_i, y.to_i
-
-  @result = @board.shoot coordinate
+  pending
 end
 
 Then(/^I get hit$/) do
-  expect(@result).to eq 'hit'
+  pending
 end
 
 Then(/^I get water$/) do
-  expect(@result).to eq 'water'
+  pending
 end
 
 Then(/^I get sink$/) do
-  expect(@result).to eq 'sink'
+  pending
 end
 
 Given(/^a small ship in position: “(\d+):(\d+)”$/) do |x, y|
-  coordinate = Coordinate.new x.to_i, y.to_i
-
-  @board.add_ship_in coordinate, SmallShip.new
+  pending
 end
 
 When(/^I shoot to position “(\d+):(\d+)” I get an error message$/) do |x, y|
-  expect{ @board.shoot(Coordinate.new x.to_i, y.to_i) }.to raise_exception('invalid position')
+  pending
 end
