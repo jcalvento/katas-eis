@@ -49,7 +49,12 @@ module Battleship
     post 'attack' do
       coordinate = Coordinate.new params[:x].to_i, params[:y].to_i
 
-      @message = session[:board].shoot coordinate
+      begin
+        @message = session[:board].shoot coordinate
+      rescue Exception => e
+        @message = e.message
+      end
+
       @board = session[:board]
 
       render 'batalla/juego'

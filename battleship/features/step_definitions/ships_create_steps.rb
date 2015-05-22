@@ -34,7 +34,7 @@ Then(/^position "([^"]*)" is not empty$/) do |position|
 
   find('#attack').click
 
-  expect(page).to have_content('Attack result:')
+  expect(find('#attack-result')).to have_content('Attack result:')
 end
 
 Given(/^I create a large ship in position "([^"]*)"$/) do |position|
