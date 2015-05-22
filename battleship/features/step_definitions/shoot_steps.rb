@@ -25,7 +25,10 @@ Then(/^I get sink$/) do
 end
 
 Given(/^a small ship in position: “(\d+):(\d+)”$/) do |x, y|
-  pending
+  fill_in 'x-small', with: x.to_i
+  fill_in 'y-small', with: y.to_i
+
+  find('#create').click
 end
 
 When(/^I shoot to position “(\d+):(\d+)” I get an error message$/) do |x, y|
