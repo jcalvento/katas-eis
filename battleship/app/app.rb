@@ -21,7 +21,16 @@ module Battleship
     post 'create-small-ship' do
       coordinate = Coordinate.new params[:x].to_i, params[:y].to_i
 
-      session[:board].add_small_ship_in coordinate, Ship.small_ship
+      @small_creation_message = session[:board].add_small_ship_in coordinate, Ship.small_ship
+      @board = session[:board]
+
+      render 'batalla/juego'
+    end
+
+    post 'create-large-ship' do
+      coordinate = Coordinate.new params[:x].to_i, params[:y].to_i
+
+      @large_creation_message = session[:board].add_small_ship_in coordinate, Ship.large_ship
       @board = session[:board]
 
       render 'batalla/juego'

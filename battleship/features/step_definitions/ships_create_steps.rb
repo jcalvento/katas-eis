@@ -34,17 +34,25 @@ Then(/^position "([^"]*)" is not empty$/) do |position|
 
   find('#attack').click
 
-  expect(page).to have_css('#attack-result', :text => 'Attack result: sink')
+  expect(page).to have_content('Attack result:')
 end
 
 Given(/^I create a large ship in position "([^"]*)"$/) do |position|
-  pending
+  split_position = position.split(':')
+  fill_in 'x-large', with: split_position.first.to_i
+  fill_in 'y-large', with: split_position[1].to_i
+
+  find('#create-large').click
 end
 
 Given(/^I create a small ship in invalid position "([^"]*)"$/) do |position|
-  pending
+  split_position = position.split(':')
+  fill_in 'x-small', with: split_position.first.to_i
+  fill_in 'y-small', with: split_position[1].to_i
+
+  find('#create').click
 end
 
 Then(/^I get an error message$/) do
-  pending
+  expect(page).to have_content('invalid position')
 end
