@@ -4,4 +4,4 @@ require 'capybara/cucumber'
 require 'rspec/expectations'
 
 # Capybara.default_driver = :selenium
-Capybara.app = Battleship::App.tap { |app|  }
+Capybara.app = App.tap { |app|  }
