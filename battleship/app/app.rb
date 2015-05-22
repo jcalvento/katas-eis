@@ -36,7 +36,7 @@ module Battleship
       coordinate = Coordinate.new params[:x].to_i, params[:y].to_i
 
       begin
-        session[:board].add_small_ship_in coordinate, Ship.large_ship
+        session[:board].add_large_ship_in coordinate, Ship.large_ship
       rescue Exception => e
         @large_creation_message = e.message
       end

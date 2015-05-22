@@ -17,11 +17,11 @@ Then(/^I get hit$/) do
 end
 
 Then(/^I get water$/) do
-  pending
+  expect(page).to have_content('Attack result: water')
 end
 
 Then(/^I get sink$/) do
-  pending
+  expect(page).to have_content('Attack result: sink')
 end
 
 Given(/^a small ship in position: “(\d+):(\d+)”$/) do |x, y|
