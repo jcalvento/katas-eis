@@ -54,5 +54,5 @@ Given(/^I create a small ship in invalid position "([^"]*)"$/) do |position|
 end
 
 Then(/^I get an error message$/) do
-  expect(page).to have_content('invalid position')
+  expect(find('.position-message')).to have_content('invalid position')
 end

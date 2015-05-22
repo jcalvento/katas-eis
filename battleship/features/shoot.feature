@@ -12,6 +12,7 @@ Feature: Shoot
     Given I shoot to position “1:1”
     Then I get water
 
+  @wip
   Scenario: Shoot and sink
     Given I shoot to position “3:4”
     Then I get hit
