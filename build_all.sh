@@ -6,5 +6,4 @@ bundle exec rake
 cd ../tenis/
 bundle exec rake
 cd ../battleship/
-bundle install
 bundle exec rake
