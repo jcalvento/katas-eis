@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+  </head>
+  <body>
+  <p>Board size: <%= "#{@board.width} x #{@board.height}" %></p>
+
+  <form method="POST" action="create-small-ship">
+    <%= csrf_token_field %>
+
+    <p>Create small ship in: </p>
+    <label>X axis:</label>
+    <input id="x-small" type="number" name="x"/><br/>
+    <label>Y axis:</label>
+    <input id="y-small" type="number" name="y"/><br/><br/>
+    <input id="create" type="submit" value="Create"/>
+
+    <% if @small_creation_message.present? %>
+      <p class="position-message"><%= @small_creation_message %></p>
+    <% end %>
+  </form>
+
+  <form method="POST" action="create-large-ship">
+    <%= csrf_token_field %>
+
+    <p>Create large ship in: </p>
+    <label>X axis:</label>
+    <input id="x-large" type="number" name="x"/><br/>
+    <label>Y axis:</label>
+    <input id="y-large" type="number" name="y"/><br/><br/>
+    <input id="create-large" type="submit" value="Create"/>
+
+    <% if @large_creation_message.present? %>
+      <p class="position-message"><%= @large_creation_message %></p>
+    <% end %>
+  </form>
+
+  <form method="POST" action="attack">
+    <%= csrf_token_field %>
+
+    <p>Attack: </p>
+    <label>X axis:</label>
+    <input id="x-attack" type="number" name="x" /><br/>
+    <label>Y axis:</label>
+    <input id="y-attack" type="number" name="y" /><br/><br/>
+    <input id="attack" type="submit" value="Attack"/>
+    <br/>
+
+    <% if @message.present? %>
+      <p id="attack-result">Attack result: <%= @message %></p>
+    <% end %>
+  </form>
+
+  </body>
+</html>

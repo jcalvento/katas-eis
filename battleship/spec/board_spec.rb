@@ -1,7 +1,7 @@
 require 'rspec'
-require_relative '../model/board'
-require_relative '../model/coordinate'
-require_relative '../model/ship'
+require_relative '../app/models/board'
+require_relative '../app/models/coordinate'
+require_relative '../app/models/ship'
 
 describe Board do
 
